@@ -1,0 +1,34 @@
+import requests
+
+# Define the API endpoint URL
+api_endpoint = "https://api.openai.com/v1/engines/davinci-codex/completions"
+
+# Set up your API key
+api_key = "<YOUR_API_KEY>"
+
+# Define the prompt or input for the API
+prompt = "Once upon a time"
+
+# Define the parameters for the API request
+params = {
+    "prompt": prompt,
+    "max_tokens": 100,
+}
+
+# Set the Authorization header with your API key
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json",
+}
+
+# Make the API request
+response = requests.post(api_endpoint, json=params, headers=headers)
+
+# Get the response data
+data = response.json()
+
+# Extract the generated text from the response
+generated_text = data["choices"][0]["text"]
+
+# Print the generated text
+print(generated_text)
